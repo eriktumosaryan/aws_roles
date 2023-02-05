@@ -11,9 +11,18 @@
             "Condition": {
                 "StringEquals": {
                     "aws:RequestedRegion": "us-east-1"
-                },
-                "StringLike": {
-                    "ec2:ResourceTag/CreatedBy": "FrontEnd/*"
+                }
+            }
+        },
+        {
+            "Effect": "Deny",
+            "Action": [
+                "ec2:RunInstances"
+            ],
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringNotEquals": {
+                    "ec2:InstanceType": "t2.micro"
                 }
             }
         }
