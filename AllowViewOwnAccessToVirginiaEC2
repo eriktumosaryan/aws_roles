@@ -1,0 +1,21 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowViewOwnAccessToVirginiaEC2",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:*"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestedRegion": "us-east-1"
+                },
+                "StringLike": {
+                    "ec2:ResourceTag/CreatedBy": "FrontEnd/*"
+                }
+            }
+        }
+    ]
+}
